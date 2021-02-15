@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+  <topic name= "unknown">
+  <category>
+      FIXME -- TRYING TO COMMIT CODE NOT WORKING FROM SITE.
+    <pattern>*</pattern>
+    <template>
+        I have no answer for that.
+        Would you like to continue with the advising session?
+        <reply>
+            <text>Yes.</text>
+            <postback>CHOOSEYES</postback>
+          </reply>
+          <reply>
+              <text>No.</text>
+              <postback>CHOOSENO</postback>
+          </reply>
+    </template>
+  </category>
+  </topic>
+  
+  <category>
+      <pattern>HI</pattern>
+      <template>
+          Hi! Are you here for career advising?
+          <reply>
+            <text>Yes.</text>
+            <postback>CHOOSEYES</postback>
+          </reply>
+          <reply>
+              <text>No.</text>
+              <postback>CHOOSENO</postback>
+          </reply>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>CHOOSENO</pattern>
+      <template>Ok. Have a great day!</template>
+  </category>
+  
+  <category>
+      <pattern>CHOOSEYES</pattern>
+      <template>
+          Wonderful! What career field are you interested in?
+          <reply>
+            <text>Computer Science</text>
+            <postback>CHOOSECOMPSCI</postback>
+          </reply>
+          <reply>
+              <text>Other</text>
+              <postback>CHOOSEOTHER</postback>
+          </reply>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>CHOOSECOMPSCI</pattern>
+      <template>
+          Excellent. 
+          <srai>WHICHJOB</srai>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>CHOOSEFRONT</pattern>
+      <template>
+          Here is some more information on front-end development.
+          <link>
+              <text>Front-End Developer Overview</text>
+              <url>https://tinyurl.com/468kfvbr</url>
+          </link>
+          <link>
+              <text>Front-End Developer Salary</text>
+              <url>https://tinyurl.com/1ocd3wo2</url>
+          </link>
+          <srai>ANYTHINGELSE</srai>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>CHOOSEBACK</pattern>
+      <template>
+          Here is some more information on back-end development.
+          <link>
+              <text>Back-End Developer Overview</text>
+              <url>https://tinyurl.com/4l3vzl97</url>
+          </link>
+          <link>
+              <text>Back-End Developer Salary</text>
+              <url>https://tinyurl.com/3y5hl9hy</url>
+          </link>
+          <srai>ANYTHINGELSE</srai>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>CHOOSESQA</pattern>
+      <template>
+          Here is some more information on SQA engineering.
+          <link>
+              <text>SQA Engineer Overview</text>
+              <url>https://tinyurl.com/7lofo9qu</url>
+          </link>
+          <link>
+              <text>SQA Engineer Salary</text>
+              <url>https://tinyurl.com/zagmdppu</url>
+          </link>
+          <srai>ANYTHINGELSE</srai>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>CHOOSEUX</pattern>
+      <template>
+          Here is some more information on UX engineering.
+          <link>
+              <text>UX Engineer Overview</text>
+              <url>https://tinyurl.com/4org25o4</url>
+          </link>
+          <link>
+              <text>UX Engineer Salary</text>
+              <url>https://tinyurl.com/aotkryje</url>
+          </link>
+          <srai>ANYTHINGELSE</srai>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>CHOOSEFULL</pattern>
+      <template>
+          Here is some more information on full-stack development.
+          <link>
+              <text>Full-Stack Developer Overview</text>
+              <url>https://tinyurl.com/ra2oz1n1</url>
+          </link>
+          <link>
+              <text>Full-Stack Developer Salary</text>
+              <url>https://tinyurl.com/1xiybi24</url>
+          </link>
+          <srai>ANYTHINGELSE</srai>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>CHOOSEIDK</pattern>
+      <template>
+        <think><set name="topic">question1</set></think>
+          That's OK! I can help you decide what you might like.
+          I'd like to ask you some questions.
+          First up, what programming language do you like the best?
+      </template>
+  </category>
+  
+  <topic name="question1">
+      <category>
+        <pattern><set>frontlanguages</set></pattern>
+        <template>
+            <think><set name="language1">front</set></think>
+            That is a good langauge for front-end development.
+            Do you know another language?
+            <think><set name="topic">question2</set></think>
+        </template>
+      </category>
+      
+      <category>
+          <pattern>^<set>backlanguages</set>^</pattern>
+          <template>
+              <think><set name="language1">back</set></think>
+              That's a good langauge for back-end development.
+              Do you know another language?
+              <think><set name="topic">question2</set></think>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>*</pattern>
+          <template>
+              I don't know that language.
+              Do you know another language?
+          </template>
+      </category>
+  </topic>
+  
+  <topic name="question2">
+      <category>
+        <pattern><set>frontlanguages</set></pattern>
+        <template>
+            <think><set name="language2">front</set></think>
+            That is a good langauge for front-end development.<break/> 
+            <think><set name="topic">question3</set></think>
+            <srai>*</srai>
+        </template>
+      </category>
+      
+      <category>
+          <pattern>^<set>backlanguages</set>^</pattern>
+          <template>
+              <think><set name="language2">back</set></think>
+              That's a good langauge for back-end development.<break/> 
+              <think><set name="topic">question3</set></think>
+              <srai>*</srai>
+          </template>
+      </category>
+        
+      <category>
+          <pattern>NO</pattern>
+          <template>
+              <think><set name="language2">none</set></think>
+              OK.
+              <think><set name="topic">question3</set></think>
+              <srai>*</srai>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>*</pattern>
+          <template>
+              I don't know that language.
+              Do you know another language?
+          </template>
+      </category>
+  </topic>
+  
+  <topic name="question3">
+      <category>
+          <pattern>*</pattern>
+          <template>
+              Do you like working with non-technical people?
+              <reply>
+                <text>Yes</text>
+                <postback>PEOPLEYES</postback>
+              </reply>
+              <reply>
+                  <text>No</text>
+                  <postback>PEOPLENO</postback>
+              </reply>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>PEOPLEYES</pattern>
+          <template>
+              <think><set name="peopleperson">yes</set></think>
+              <think><set name="topic">question4</set></think>
+              <srai>*</srai>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>PEOPLENO</pattern>
+          <template>
+              <think><set name="peopleperson">no</set></think>
+              <think><set name="topic">question4</set></think>
+              <srai>*</srai>
+          </template>
+      </category>
+  </topic>
+  
+  <topic name="question4">
+      <category>
+          <pattern>*</pattern>
+          <template>
+              Do you like breaking things?
+              <reply>
+                <text>Yes</text>
+                <postback>BREAKYES</postback>
+              </reply>
+              <reply>
+                  <text>No</text>
+                  <postback>BREAKNO</postback>
+              </reply>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>BREAKYES</pattern>
+          <template>
+              <think><set name="breakstuff">yes</set></think>
+              <think><set name="topic">suggestion</set></think>
+              <srai>*</srai>
+          </template>
+      </category>
+      
+      <category>
+          <pattern>BREAKNO</pattern>
+          <template>
+              <think><set name="breakstuff">no</set></think>
+              <think><set name="topic">suggestion</set></think>
+              <srai>*</srai>
+          </template>
+      </category>
+  </topic>
+  
+  <topic name="suggestion">
+      <category>
+          <pattern>*</pattern>
+          <template>
+              Based on the langauges you know I would recommend:<break/>
+              <condition name="peopleperson">
+                  <li value="yes">UX Engineer. <srai>CHOOSEUX</srai></li>
+                  <li value="no">
+                      <condition name="breakstuff">
+                          <li value="yes">SQA Engineer. <srai>CHOOSESQA</srai></li>
+                          <li value="no">
+                              <condition name="language1">
+                                  <li value="front">
+                                  <condition name="language2">
+                                      <li value="none">Front-End Developer. <srai>CHOOSEFRONT</srai></li>
+                                      <li value="front">Front-End Developer. <srai>CHOOSEFRONT</srai></li>
+                                      <li value="back">Full-Stack Developer. <srai>CHOOSEFULL</srai></li>
+                                  </condition>
+                                  </li>
+                                  <li value="back">
+                                  <condition name="language2">
+                                      <li value="none">Back-End Developer. <srai>CHOOSEBACK</srai></li>
+                                      <li value="front">Full-Stack Developer. <srai>CHOOSEFULL</srai></li>
+                                      <li value="back">Back-End Developer. <srai>CHOOSEBACK</srai></li>
+                                  </condition>
+                                  </li>
+                                </condition>
+                          </li>
+                      </condition>
+                  </li>
+              </condition>
+          </template>
+      </category>
+  </topic>
+  
+  <category>
+      <pattern>CHOOSEOTHER</pattern>
+      <template>I'm not equipped to help you with other careers.</template>
+  </category>
+  
+  <category>
+      <pattern>ANYTHINGELSE</pattern>
+      <template>
+          Would you like to look at other career options?
+          <reply>
+            <text>More careers</text>
+            <postback>CHOOSEMORE</postback>
+          </reply>
+          <reply>
+            <text>I'm finished</text>
+            <postback>CHOOSEFINISH</postback>
+          </reply>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>WHICHJOB</pattern>
+      <template>
+          Which Computer Science job do you like?
+          <reply>
+            <text>Front-End Developer</text>
+            <postback>CHOOSEFRONT</postback>
+          </reply>
+          <reply>
+            <text>Back-End Developer</text>
+            <postback>CHOOSEBACK</postback>
+          </reply>
+          <reply>
+            <text>SQA Engineer</text>
+            <postback>CHOOSESQA</postback>
+          </reply>
+          <reply>
+            <text>UX Engineer</text>
+            <postback>CHOOSEUX</postback>
+          </reply>
+          <reply>
+            <text>Full-Stack Developer</text>
+            <postback>CHOOSEFULL</postback>
+          </reply>
+          <reply>
+            <text>I don't know.</text>
+            <postback>CHOOSEIDK</postback>
+          </reply>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>CHOOSEMORE</pattern>
+      <template><srai>WHICHJOB</srai></template>
+  </category>
+  
+  <category>
+      <pattern>CHOOSEFINISH</pattern>
+      <template>Have a great day. Bye!</template>
+  </category>
+  
+  <category>
+      <pattern>HELLO</pattern>
+      <template><srai>HI</srai></template>
+  </category>
+<category>
+    <pattern></pattern>
+    <template></template>
+</category>
+</aiml>
